@@ -37,7 +37,7 @@
     "test:side-effects": "check-side-effects --test integration/side-effects/side-effects.json",
     "test:side-effects:update": "npm run test:side-effects -- --update",
     "test:import": "ts-node ./integration/import/runner.ts",
-    "compile": "tsc -b ./src/tsconfig.cjs.json ./src/tsconfig.cjs.spec.json ./src/tsconfig.esm.json ./src/tsconfig.esm5.json ./src/tsconfig.esm5.rollup.json ./src/tsconfig.types.json ./spec/tsconfig.json",
+    "compile": "tsc -b ./src/tsconfig.cjs.json ./src/tsconfig.cjs.spec.json ./src/tsconfig.esm.json ./src/tsconfig.esm5.json ./src/tsconfig.esm5.rollup.json ./src/tsconfig.types.json ./spec/tsconfig.json && denoc",
     "build:clean": "shx rm -rf ./dist",
     "build:global": "node ./tools/make-umd-bundle.js && node ./tools/make-closure-core.js",
     "build:package": "npm-run-all build:clean compile build:global && node ./tools/prepare-package.js && node ./tools/generate-alias.js",
@@ -113,6 +113,7 @@
     "colors": "1.1.2",
     "cross-env": "5.1.3",
     "cz-conventional-changelog": "1.2.0",
+    "denoc": "^1.1.2",
     "dependency-cruiser": "^9.12.0",
     "escape-string-regexp": "1.0.5",
     "eslint": "^7.8.1",
@@ -178,5 +179,17 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "denoc": {
+    "outDir": "deno_dist",
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "**/animationFrameProvider.ts",
+      "**/animationFrames.ts",
+      "**/AnimationFrameAction.ts",
+      "**/animationFrame.ts"
+    ]
   }
 }

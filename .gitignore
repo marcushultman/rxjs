@@ -12,6 +12,7 @@ typings/
 
 # Generated
 /dist/
+/deno_dist/
 /dist-compat/
 tmp/
 coverage/
